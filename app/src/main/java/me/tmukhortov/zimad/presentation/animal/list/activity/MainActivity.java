@@ -1,6 +1,7 @@
-package me.tmukhortov.zimad;
+package me.tmukhortov.zimad.presentation.animal.list.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import me.tmukhortov.zimad.R;
 
 import android.os.Bundle;
 
