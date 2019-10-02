@@ -1,13 +1,9 @@
 # android_zimad
 Test work for position android developer in Zimad
 
-**Технологии:**
+**Технологии:** _Java, _Android SDK, Architecture Components (LiveData, ViewModel), Retrofit, Picasso, TabLayout, RecyclerView_
 
-Java, Android SDK, Architecture Components (LiveData, ViewModel), Retrofit, Picasso, TabLayout, RecyclerView
-
-**Архиектуры:**
-
-Clean Architecture, MVVM
+**Архиектуры:** _Clean Architecture, MVVM_
 
 **Описание:** 
 
