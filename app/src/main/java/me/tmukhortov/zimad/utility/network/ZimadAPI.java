@@ -2,15 +2,17 @@ package me.tmukhortov.zimad.utility.network;
 
 import java.util.List;
 
-import me.tmukhortov.zimad.data.Animal;
-import retrofit2.Call;
+import io.reactivex.Observable;
+import io.reactivex.Single;
+import me.tmukhortov.zimad.data.response.Animal;
+import me.tmukhortov.zimad.data.response.Response;
 import retrofit2.http.GET;
 
 public interface ZimadAPI {
 
     @GET("/xim/api.php?query=cat")
-    Call<List<Animal>> catList();
+    Single<Response<Animal>> catList();
 
     @GET("/xim/api.php?query=dog")
-    Call<List<Animal>> dogList();
+    Observable<List<Animal>> dogList();
 }
