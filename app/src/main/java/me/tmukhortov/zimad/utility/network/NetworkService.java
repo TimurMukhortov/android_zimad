@@ -5,24 +5,24 @@ import com.google.gson.GsonBuilder;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class NetworkService {
-    private volatile static NetworkService mInstance;
-    private static final String BASE_URL = "http://kot3.com/xim/";
-    private Retrofit mRetrofit;
+public final class NetworkService {
+
+    private static final NetworkService instance = new NetworkService();
+    private static final String BASE_URL = "http://kot3.com";
+    private final ZimadAPI zimadAPI;
 
     private NetworkService() {
         Gson gson = new GsonBuilder().setLenient().create();
-
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson)).build();
-
-        ZimadAPI zimadAPI = retrofit.create(ZimadAPI.class);
+        zimadAPI = retrofit.create(ZimadAPI.class);
     }
 
     public static NetworkService getInstance() {
-        if (mInstance == null) {
-            mInstance = new NetworkService();
-        }
-        return mInstance;
+        return instance;
+    }
+
+    public ZimadAPI getZimadAPI() {
+        return zimadAPI;
     }
 }
