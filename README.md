@@ -1,6 +1,14 @@
 # android_zimad
 Test work for position android developer in Zimad
 
+**Технологии:**
+
+Java, Android SDK, Architecture Components (LiveData, ViewModel), Retrofit, Picasso, TabLayout, RecyclerView
+
+**Архиектуры:**
+
+Clean Architecture, MVVM
+
 **Описание:** 
 
 Надо сделать окно с двумя вкладками. 
@@ -30,3 +38,5 @@ http://kot3.com/xim/api.php?query=dog
 Использовать стандартный вид элементов, дизайн не важен. Всё, что не описано-делать не нужно.
 Использование MV* шаблонов разработки пользовательского интерфейса и _Clean Architecture_ будет плюсом. (Реализация своя, без _Moxy_ и прочих)
 Тестовое задание должно быть выполнено на _Java_. Залить желательно на гит.
+
+![Screen layout](https://github.com/elsemTim/android_zimad/blob/master/about/Mockup_Android%20dev_test_MJP.png)
