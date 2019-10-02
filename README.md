@@ -1,5 +1,5 @@
 # android_zimad
-Test work for position android developer in Zimad
+**About:** Test work for position android developer in Zimad
 
 **Технологии:** _Java, Android SDK, Architecture Components (LiveData, ViewModel), Retrofit, Picasso, TabLayout, RecyclerView_
 
