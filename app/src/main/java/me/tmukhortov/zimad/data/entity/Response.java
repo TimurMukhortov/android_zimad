@@ -1,4 +1,4 @@
-package me.tmukhortov.zimad.data.response;
+package me.tmukhortov.zimad.data.model;
 
 import java.util.List;
 
