@@ -12,8 +12,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import me.tmukhortov.zimad.R;
-import me.tmukhortov.zimad.data.response.Animal;
-import me.tmukhortov.zimad.data.response.Response;
+import me.tmukhortov.zimad.data.entity.Animal;
+import me.tmukhortov.zimad.data.entity.Response;
 import me.tmukhortov.zimad.utility.network.NetworkService;
 
 public class MainActivity extends AppCompatActivity {

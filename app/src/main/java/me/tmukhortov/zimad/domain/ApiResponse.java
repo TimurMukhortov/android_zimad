@@ -1,8 +1,8 @@
-package me.tmukhortov.zimad.data.response.base;
+package me.tmukhortov.zimad.domain;
 
 import java.util.List;
 
-import me.tmukhortov.zimad.data.model.Animal;
+import me.tmukhortov.zimad.data.entity.Animal;
 
 public class ApiResponse {
     private final List<Animal> animalList;

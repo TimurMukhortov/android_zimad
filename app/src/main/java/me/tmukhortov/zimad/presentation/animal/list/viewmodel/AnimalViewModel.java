@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import me.tmukhortov.zimad.data.repository.AnimalRepository;
 import me.tmukhortov.zimad.data.repository.AnimalRepositoryImpl;
-import me.tmukhortov.zimad.data.response.base.ApiResponse;
+import me.tmukhortov.zimad.domain.ApiResponse;
 
 public class AnimalViewModel extends ViewModel {
 

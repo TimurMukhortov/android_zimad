@@ -4,8 +4,8 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
-import me.tmukhortov.zimad.data.response.Animal;
-import me.tmukhortov.zimad.data.response.Response;
+import me.tmukhortov.zimad.data.entity.Animal;
+import me.tmukhortov.zimad.data.entity.Response;
 import retrofit2.http.GET;
 
 public interface ZimadAPI {

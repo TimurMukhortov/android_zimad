@@ -1,4 +1,4 @@
-package me.tmukhortov.zimad.data.model;
+package me.tmukhortov.zimad.data.entity;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

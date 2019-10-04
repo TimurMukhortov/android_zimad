@@ -1,4 +1,4 @@
-package me.tmukhortov.zimad.data.model;
+package me.tmukhortov.zimad.data.entity;
 
 import java.util.List;
 
