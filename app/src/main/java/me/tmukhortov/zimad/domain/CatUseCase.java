@@ -5,14 +5,15 @@ import io.reactivex.functions.Consumer;
 import me.tmukhortov.zimad.data.entity.Animal;
 import me.tmukhortov.zimad.data.entity.Response;
 import me.tmukhortov.zimad.data.repository.AnimalRepository;
+import me.tmukhortov.zimad.data.repository.AnimalRepositoryImpl;
 
 public class CatUseCase {
 
     private final AnimalRepository animalRepository;
     private Disposable disposables;
 
-    CatUseCase(AnimalRepository animalRepository) {
-        this.animalRepository = animalRepository;
+    public CatUseCase() {
+        this.animalRepository = new AnimalRepositoryImpl();
     }
 
     public void execute() {
@@ -30,7 +31,7 @@ public class CatUseCase {
     }
 
     public void dispose() {
-        if (!disposables.isDisposed()) {
+        if (disposables != null && !disposables.isDisposed()) {
             disposables.dispose();
         }
     }
