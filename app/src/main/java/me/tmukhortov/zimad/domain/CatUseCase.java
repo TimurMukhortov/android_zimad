@@ -9,7 +9,7 @@ public class CatUseCase {
     CatUseCase(AnimalRepository animalRepository) {
         this.animalRepository = animalRepository;
     }
-tus
+
 
     public void execute() {
         animalRepository.getCatList();
