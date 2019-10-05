@@ -1,34 +1,36 @@
 package me.tmukhortov.zimad.presentation.animal.list.viewmodel;
 
+import java.util.List;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.Observer;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import me.tmukhortov.zimad.data.repository.AnimalRepository;
-import me.tmukhortov.zimad.data.repository.AnimalRepositoryImpl;
+import me.tmukhortov.zimad.data.entity.Animal;
 import me.tmukhortov.zimad.domain.ApiResponse;
+import me.tmukhortov.zimad.domain.CatUseCase;
 
 public class AnimalViewModel extends ViewModel {
 
     private MediatorLiveData<ApiResponse> apiResponse;
-    private AnimalRepository animalRepository;
+    private final CatUseCase catUseCase;
 
     public AnimalViewModel() {
-        apiResponse = new MediatorLiveData<>();
-        animalRepository = new AnimalRepositoryImpl();
+        //        apiResponse = new MediatorLiveData<>();
+        catUseCase = new CatUseCase();
     }
 
     public MediatorLiveData<ApiResponse> getApiResponse() {
         return apiResponse;
     }
 
-    public LiveData<ApiResponse> loadCatList() {
-        this.apiResponse.addSource(animalRepository.getCatList(), new Observer<ApiResponse>() {
-            @Override
-            public void onChanged(ApiResponse apiResponseResponse) {
-                apiResponse.setValue(apiResponseResponse);
-            }
-        });
-        return apiResponse;
+    private MutableLiveData<List<Animal>> catList;
+
+    public LiveData<List<Animal>> getCatList() {
+        if (catList == null) {
+            catList = new MutableLiveData<>();
+            catUseCase.execute();
+        }
+        return catList;
     }
 }

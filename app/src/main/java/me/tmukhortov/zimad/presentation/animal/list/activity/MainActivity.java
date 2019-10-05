@@ -7,14 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-import io.reactivex.SingleObserver;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import androidx.lifecycle.ViewModelProvider;
 import me.tmukhortov.zimad.R;
 import me.tmukhortov.zimad.data.entity.Animal;
-import me.tmukhortov.zimad.data.entity.Response;
-import me.tmukhortov.zimad.utility.network.NetworkService;
+import me.tmukhortov.zimad.presentation.animal.list.viewmodel.AnimalViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,25 +21,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        NetworkService.getInstance().getZimadAPI().catList().subscribeOn(Schedulers.single())
-                      .observeOn(AndroidSchedulers.mainThread())
-                      .subscribe(new SingleObserver<Response<Animal>>() {
-                          @Override
-                          public void onSubscribe(Disposable d) {
-                          }
-
-                          @Override
-                          public void onSuccess(Response<Animal> response) {
-                              animalList.addAll(response.getData());
-                              printList(animalList);
-                          }
-
-                          @Override
-                          public void onError(Throwable e) {
-                              e.printStackTrace();
-                          }
-                      });
+        AnimalViewModel animalViewModel =
+                new ViewModelProvider.NewInstanceFactory().create(AnimalViewModel.class);
+        List<Animal> test = animalViewModel.getCatList().getValue();
+        String s = "";
+        //        NetworkService.getInstance().getZimadAPI().catList().subscribeOn(Schedulers.single())
+        //                      .observeOn(AndroidSchedulers.mainThread())
+        //                      .subscribe(new SingleObserver<Response<Animal>>() {
+        //                          @Override
+        //                          public void onSubscribe(Disposable d) {
+        //                          }
+        //
+        //                          @Override
+        //                          public void onSuccess(Response<Animal> response) {
+        //                              animalList.addAll(response.getData());
+        //                              printList(animalList);
+        //                          }
+        //
+        //                          @Override
+        //                          public void onError(Throwable e) {
+        //                              e.printStackTrace();
+        //                          }
+        //                      });
 
     }
 
