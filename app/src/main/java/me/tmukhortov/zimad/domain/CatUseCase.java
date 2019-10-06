@@ -1,7 +1,10 @@
 package me.tmukhortov.zimad.domain;
 
+import java.util.List;
+
+import io.reactivex.Single;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import me.tmukhortov.zimad.data.entity.Animal;
 import me.tmukhortov.zimad.data.entity.Response;
 import me.tmukhortov.zimad.data.repository.AnimalRepository;
@@ -16,16 +19,11 @@ public class CatUseCase {
         this.animalRepository = new AnimalRepositoryImpl();
     }
 
-    public void execute() {
-        disposables = animalRepository.getCatList().subscribe(new Consumer<Response<Animal>>() {
+    public Single<List<Animal>> execute() {
+        return animalRepository.getCatList().map(new Function<Response<Animal>, List<Animal>>() {
             @Override
-            public void accept(Response<Animal> animalResponse) throws Exception {
-                // TODO set data to LiveData<List<Animal>>
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                // TODO show error?
+            public List<Animal> apply(Response<Animal> animalResponse) throws Exception {
+                return animalResponse.getData();
             }
         });
     }
