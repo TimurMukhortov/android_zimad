@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         AnimalViewModel animalViewModel = ViewModelProviders.of(this).get(AnimalViewModel.class);
-        animalViewModel.getCatList().getAnimalList().observe(this, new Observer<List<Animal>>() {
+        animalViewModel.getCatList().observe(this, new Observer<List<Animal>>() {
             @Override
             public void onChanged(List<Animal> animals) {
                 String s = "";
