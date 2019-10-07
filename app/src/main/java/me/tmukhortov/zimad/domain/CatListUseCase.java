@@ -9,11 +9,11 @@ import me.tmukhortov.zimad.data.entity.Response;
 import me.tmukhortov.zimad.data.repository.AnimalRepository;
 import me.tmukhortov.zimad.data.repository.AnimalRepositoryImpl;
 
-public class CatUseCase {
+public class CatListUseCase {
 
     private final AnimalRepository animalRepository;
 
-    public CatUseCase() {
+    public CatListUseCase() {
         this.animalRepository = new AnimalRepositoryImpl();
     }
 

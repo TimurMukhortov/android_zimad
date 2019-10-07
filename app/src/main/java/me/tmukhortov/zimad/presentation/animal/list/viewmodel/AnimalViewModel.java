@@ -8,16 +8,16 @@ import androidx.lifecycle.ViewModel;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import me.tmukhortov.zimad.data.entity.Animal;
-import me.tmukhortov.zimad.domain.CatUseCase;
+import me.tmukhortov.zimad.domain.CatListUseCase;
 
 public class AnimalViewModel extends ViewModel {
 
-    private final CatUseCase catUseCase;
+    private final CatListUseCase catUseCase;
     private MutableLiveData<List<Animal>> catList;
     private Disposable disposables;
 
     public AnimalViewModel() {
-        catUseCase = new CatUseCase();
+        catUseCase = new CatListUseCase();
     }
 
     public LiveData<List<Animal>> getCatList() {
