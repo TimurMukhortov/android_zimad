@@ -1,4 +1,4 @@
-package me.tmukhortov.zimad.domain;
+package me.tmukhortov.zimad.domain.entity;
 
 import java.util.List;
 

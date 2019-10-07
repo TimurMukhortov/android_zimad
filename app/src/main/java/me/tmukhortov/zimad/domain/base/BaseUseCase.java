@@ -1,18 +1,16 @@
-package me.tmukhortov.zimad.domain;
+package me.tmukhortov.zimad.domain.base;
 
-import androidx.annotation.MainThread;
 import androidx.core.util.Preconditions;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.observers.DisposableObserver;
 import io.reactivex.observers.DisposableSingleObserver;
-import io.reactivex.schedulers.Schedulers;
 
-public abstract class UseCase<T, Params> {
+// TODO finish it later
+public abstract class BaseUseCase<T, Params> {
 
     private final CompositeDisposable disposables;
 
-    UseCase() {
+    BaseUseCase() {
         this.disposables = new CompositeDisposable();
     }
 

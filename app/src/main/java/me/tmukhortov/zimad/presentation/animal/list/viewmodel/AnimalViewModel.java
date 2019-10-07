@@ -37,6 +37,10 @@ public class AnimalViewModel extends ViewModel {
         });
     }
 
+    private void loadDogList() {
+        // TODO get dog list. call from DogFragment
+    }
+
     @Override
     protected void onCleared() {
         dispose();
