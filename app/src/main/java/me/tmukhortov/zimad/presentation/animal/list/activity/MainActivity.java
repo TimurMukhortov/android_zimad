@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.tabs.TabLayout;
 import me.tmukhortov.zimad.R;
+import me.tmukhortov.zimad.presentation.animal.list.viewmodel.AnimalViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,5 +38,6 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+        AnimalViewModel animalViewModel = ViewModelProviders.of(this).get(AnimalViewModel.class);
     }
 }
