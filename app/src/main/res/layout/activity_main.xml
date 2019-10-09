@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".presentation.animal.list.activity.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/activity_main_tab_layout_action"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/activity_main_tab_layout_action"
         android:layout_width="0dp"
@@ -16,13 +25,11 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_cats"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/cats" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_dogs"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/dogs" />
