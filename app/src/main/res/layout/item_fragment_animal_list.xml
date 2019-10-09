@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/big_margin"
+    android:layout_marginStart="@dimen/big_margin"
+    android:layout_marginTop="@dimen/big_margin"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/fragment_animal_list_avatar"
+        android:layout_width="@dimen/small_avatar"
+        android:layout_height="@dimen/small_avatar"
+        android:contentDescription="@string/avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/fragment_animal_list_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fragment_animal_list_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Английский бульдог" />
+
+    <TextView
+        android:id="@+id/fragment_animal_list_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/normal_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fragment_animal_list_avatar"
+        app:layout_constraintTop_toBottomOf="@id/fragment_animal_list_title"
+        tools:text="Короткошёрстная порода собак типа мастифов. По способу использования стандарт относит породу к собакам-телохранителям и компаньонам. Современные английские бульдоги выведены во второй половине XIX века, в основе породы — староанглийский бульдог, травильная порода собак, ныне вымершая." />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

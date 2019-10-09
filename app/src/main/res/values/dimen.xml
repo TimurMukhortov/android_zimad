@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="normal_margin">8dp</dimen>
+    <dimen name="big_margin">32dp</dimen>
+    <dimen name="small_avatar">75dp</dimen>
 </resources>
