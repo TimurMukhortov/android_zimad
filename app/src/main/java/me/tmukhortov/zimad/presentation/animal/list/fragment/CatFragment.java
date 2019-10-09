@@ -10,5 +10,10 @@ public class CatFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // TODO transfer to CatFragment
+        //        AnimalViewModel animalViewModel = ViewModelProviders.of(this).get(AnimalViewModel.class);
+        //        animalViewModel.getCatList().observe(this, animals -> {
+        //            String s = "";
+        //        });
     }
 }
