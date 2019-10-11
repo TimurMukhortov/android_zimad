@@ -16,13 +16,15 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAB_STATE = "tab_state";
 
     private int selectedTab = -1;
+    private TabLayout.BaseOnTabSelectedListener bottomBarTabSelectedListener;
+    private TabLayout bottomBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TabLayout actionView = findViewById(R.id.activity_main_tab_layout_action);
-        actionView.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+        bottomBar = findViewById(R.id.activity_main_tab_layout_action);
+        bottomBarTabSelectedListener = new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
@@ -45,12 +47,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
             }
-        });
+        };
+        bottomBar.addOnTabSelectedListener(bottomBarTabSelectedListener);
         if (savedInstanceState == null) {
             selectedTab = 0;
             openCatFragment();
         } else {
-            actionView.getTabAt(savedInstanceState.getInt(TAB_STATE)).select();
+            int positionTab = savedInstanceState.getInt(TAB_STATE);
+            highlightBottomBarMenu(positionTab);
         }
     }
 
@@ -76,5 +80,11 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, dogFragment);
         fragmentTransaction.commit();
+    }
+
+    private void highlightBottomBarMenu(int position) {
+        bottomBar.removeOnTabSelectedListener(bottomBarTabSelectedListener);
+        bottomBar.getTabAt(position).select();
+        bottomBar.addOnTabSelectedListener(bottomBarTabSelectedListener);
     }
 }
