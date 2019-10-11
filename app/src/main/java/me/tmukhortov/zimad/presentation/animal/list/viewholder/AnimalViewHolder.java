@@ -1,6 +1,5 @@
 package me.tmukhortov.zimad.presentation.animal.list.viewholder;
 
-import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
