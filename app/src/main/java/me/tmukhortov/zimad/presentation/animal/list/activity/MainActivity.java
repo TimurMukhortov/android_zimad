@@ -1,7 +1,9 @@
 package me.tmukhortov.zimad.presentation.animal.list.activity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -39,23 +41,35 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-        openCatFragment();
+        if (savedInstanceState == null) {
+            openCatFragment();
+        }
     }
 
     // TODO убрать это говно. нужна какая-то обертка или NavigationComponent
     private void openCatFragment() {
+        CatFragment catFragment = CatFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, new CatFragment());
+        fragmentTransaction.replace(R.id.fragment_container, catFragment);
+        fragmentTransaction.addToBackStack(CatFragment.TAG);
         fragmentTransaction.commit();
     }
 
     // TODO убрать это говно. нужна какая-то обертка или NavigationComponent
     private void openDogFragment() {
+        DogFragment dogFragment = DogFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, new DogFragment());
+        fragmentTransaction.replace(R.id.fragment_container, dogFragment);
+        fragmentTransaction.addToBackStack(DogFragment.TAG);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        String s = "";
     }
 }
 // TODO найден баг, если включит экран с кошками, перейти на экран с собаками и повернуть экран

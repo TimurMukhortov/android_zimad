@@ -1,7 +1,6 @@
 package me.tmukhortov.zimad.presentation.animal.list.fragment;
 
 import java.util.ArrayList;
-import java.util.function.Function;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,8 +21,15 @@ import me.tmukhortov.zimad.presentation.animal.list.viewmodel.AnimalViewModel;
 
 public class CatFragment extends Fragment {
 
+    public static final String TAG = CatFragment.class.getName();
+
     private RecyclerView recyclerView;
     private AnimalAdapter adapter;
+
+    public static CatFragment newInstance() {
+        CatFragment catFragment = new CatFragment();
+        return catFragment;
+    }
 
     @Nullable
     @Override

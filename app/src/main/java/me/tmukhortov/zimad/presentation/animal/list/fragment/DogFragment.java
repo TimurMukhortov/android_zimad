@@ -21,8 +21,15 @@ import me.tmukhortov.zimad.presentation.animal.list.viewmodel.AnimalViewModel;
 
 public class DogFragment extends Fragment {
 
+    public static final String TAG = DogFragment.class.getName();
+
     private RecyclerView recyclerView;
     private AnimalAdapter adapter;
+
+    public static DogFragment newInstance() {
+        DogFragment dogFragment = new DogFragment();
+        return dogFragment;
+    }
 
     @Nullable
     @Override
