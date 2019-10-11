@@ -21,7 +21,6 @@ import me.tmukhortov.zimad.presentation.animal.list.viewmodel.AnimalViewModel;
 
 public class CatFragment extends Fragment {
 
-    public static final String TAG = CatFragment.class.getName();
 
     private RecyclerView recyclerView;
     private AnimalAdapter adapter;

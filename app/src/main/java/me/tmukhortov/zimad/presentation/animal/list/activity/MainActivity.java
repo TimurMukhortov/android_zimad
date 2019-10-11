@@ -1,6 +1,5 @@
 package me.tmukhortov.zimad.presentation.animal.list.activity;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +13,10 @@ import me.tmukhortov.zimad.presentation.animal.list.fragment.DogFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAB_STATE = "tab_state";
+
+    private int selectedTab = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,10 +27,12 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0: {
+                        selectedTab = 0;
                         openCatFragment();
                         break;
                     }
                     case 1: {
+                        selectedTab = 1;
                         openDogFragment();
                     }
                 }
@@ -42,8 +47,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         if (savedInstanceState == null) {
+            selectedTab = 0;
             openCatFragment();
+        } else {
+            actionView.getTabAt(savedInstanceState.getInt(TAB_STATE)).select();
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(TAB_STATE, selectedTab);
     }
 
     // TODO убрать это говно. нужна какая-то обертка или NavigationComponent
@@ -52,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, catFragment);
-        fragmentTransaction.addToBackStack(CatFragment.TAG);
         fragmentTransaction.commit();
     }
 
@@ -62,15 +75,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, dogFragment);
-        fragmentTransaction.addToBackStack(DogFragment.TAG);
         fragmentTransaction.commit();
     }
-
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        String s = "";
-    }
 }
-// TODO найден баг, если включит экран с кошками, перейти на экран с собаками и повернуть экран
-//  включается снова экран с кошками.
