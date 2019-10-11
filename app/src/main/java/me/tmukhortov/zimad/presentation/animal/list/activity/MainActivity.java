@@ -1,7 +1,6 @@
 package me.tmukhortov.zimad.presentation.animal.list.activity;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -43,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         openCatFragment();
     }
 
+    // TODO убрать это говно. нужна какая-то обертка или NavigationComponent
     private void openCatFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    // TODO убрать это говно. нужна какая-то обертка или NavigationComponent
     private void openDogFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
