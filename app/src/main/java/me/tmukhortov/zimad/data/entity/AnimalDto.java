@@ -3,24 +3,24 @@ package me.tmukhortov.zimad.data.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public final class Animal {
+public final class AnimalDto {
     @SerializedName("url")
     @Expose
-    private final String mUrl;
+    private final String url;
     @SerializedName("title")
     @Expose
-    private final String mTitle;
+    private final String title;
 
-    public Animal(String mUrl, String mTitle) {
-        this.mUrl = mUrl;
-        this.mTitle = mTitle;
+    public AnimalDto(String url, String title) {
+        this.url = url;
+        this.title = title;
     }
 
     public String getUrl() {
-        return mUrl;
+        return url;
     }
 
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 }

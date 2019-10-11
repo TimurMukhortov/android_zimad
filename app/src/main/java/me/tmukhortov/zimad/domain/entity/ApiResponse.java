@@ -2,13 +2,13 @@ package me.tmukhortov.zimad.domain.entity;
 
 import java.util.List;
 
-import me.tmukhortov.zimad.data.entity.Animal;
+import me.tmukhortov.zimad.data.entity.AnimalDto;
 
 public class ApiResponse {
-    private final List<Animal> animalList;
+    private final List<AnimalDto> animalList;
     private final Throwable error;
 
-    public ApiResponse(List<Animal> animalList) {
+    public ApiResponse(List<AnimalDto> animalList) {
         this.animalList = animalList;
         error = null;
     }

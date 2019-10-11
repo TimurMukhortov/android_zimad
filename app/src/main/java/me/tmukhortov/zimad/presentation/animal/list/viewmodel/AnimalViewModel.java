@@ -6,21 +6,26 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import me.tmukhortov.zimad.data.entity.Animal;
+import me.tmukhortov.zimad.data.entity.AnimalDto;
 import me.tmukhortov.zimad.domain.CatListUseCase;
+import me.tmukhortov.zimad.domain.DogListUseCase;
 
 public class AnimalViewModel extends ViewModel {
 
     private final CatListUseCase catUseCase;
-    private MutableLiveData<List<Animal>> catList;
+    private final DogListUseCase dogUseCase;
+    private MutableLiveData<List<AnimalDto>> catList;
+    private MutableLiveData<List<AnimalDto>> dogList;
     private Disposable disposables;
 
     public AnimalViewModel() {
         catUseCase = new CatListUseCase();
+        // TODO подумать над тем, должен ли этот UseCase жить внутри этой же VM с котятами..
+        dogUseCase = new DogListUseCase();
     }
 
-    public LiveData<List<Animal>> getCatList() {
+    // TODO избавиться от DTO и вернуть уже Animal, либо его реализацию в данном случае Cat
+    public LiveData<List<AnimalDto>> getCatList() {
         if (catList == null) {
             catList = new MutableLiveData<>();
             loadCatList();
@@ -28,17 +33,27 @@ public class AnimalViewModel extends ViewModel {
         return catList;
     }
 
+    // TODO избавиться от DTO и вернуть уже Animal, либо его реализацию в данном случае Cat
+    public LiveData<List<AnimalDto>> getDogList() {
+        if (dogList == null) {
+            dogList = new MutableLiveData<>();
+            loadDogList();
+        }
+        return dogList;
+    }
+
+    // TODO добавить отображение ошибки в тосте или alert(e)
     private void loadCatList() {
-        disposables = catUseCase.execute().subscribe(new Consumer<List<Animal>>() {
-            @Override
-            public void accept(List<Animal> animals) throws Exception {
-                catList.setValue(animals);
-            }
-        });
+        disposables = catUseCase.execute().subscribe(animals -> catList.setValue(animals),
+                                                     Throwable::printStackTrace);
     }
 
     private void loadDogList() {
-        // TODO get dog list. call from DogFragment
+        // TODO подумать над названиями переменных, туп как-то. Возможно, если UseCase уже будет
+        //  возвращать нужные данные, а не dto, проблем решится сама собой, но нужно дать свои
+        //  реализации и сделать абстрактный класс Animal
+        disposables = dogUseCase.execute().subscribe(animals -> dogList.setValue(animals),
+                                                     Throwable::printStackTrace);
     }
 
     @Override
