@@ -58,3 +58,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 }
+// TODO найден баг, если включит экран с кошками, перейти на экран с собаками и повернуть экран
+//  включается снова экран с кошками.
