@@ -1,9 +1,9 @@
-package me.tmukhortov.zimad.data.entity;
+package me.tmukhortov.zimad.data.entity.animal.base;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public final class AnimalDto {
+public abstract class Animal {
     @SerializedName("url")
     @Expose
     private final String url;
@@ -11,7 +11,7 @@ public final class AnimalDto {
     @Expose
     private final String title;
 
-    public AnimalDto(String url, String title) {
+    public Animal(String url, String title) {
         this.url = url;
         this.title = title;
     }

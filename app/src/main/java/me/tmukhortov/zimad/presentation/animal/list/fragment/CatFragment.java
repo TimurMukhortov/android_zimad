@@ -14,9 +14,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import me.tmukhortov.zimad.R;
-import me.tmukhortov.zimad.data.entity.AnimalDto;
+import me.tmukhortov.zimad.data.entity.animal.base.Animal;
 import me.tmukhortov.zimad.presentation.animal.list.adapter.AnimalAdapter;
-import me.tmukhortov.zimad.presentation.animal.list.entity.Animal;
 import me.tmukhortov.zimad.presentation.animal.list.viewmodel.AnimalViewModel;
 
 public class CatFragment extends Fragment {
@@ -42,11 +41,11 @@ public class CatFragment extends Fragment {
                     ViewModelProviders.of(getActivity()).get(AnimalViewModel.class);
             animalViewModel.getCatList().observe(this, animalDtoList -> {
                 // TODO переделать по другому
-                ArrayList<Animal> animalList = new ArrayList<>();
-                for (AnimalDto animalDto : animalDtoList) {
+                ArrayList<me.tmukhortov.zimad.presentation.animal.list.entity.Animal> animalList = new ArrayList<>();
+                for (Animal animalDto : animalDtoList) {
                     String avatarPath = animalDto.getUrl();
                     String title = animalDto.getTitle();
-                    animalList.add(new Animal(avatarPath, title));
+                    animalList.add(new me.tmukhortov.zimad.presentation.animal.list.entity.Animal(avatarPath, title));
                 }
                 adapter.setItems(animalList);
             });

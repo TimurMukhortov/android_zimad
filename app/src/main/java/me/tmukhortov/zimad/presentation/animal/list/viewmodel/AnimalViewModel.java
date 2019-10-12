@@ -6,16 +6,16 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import io.reactivex.disposables.Disposable;
-import me.tmukhortov.zimad.data.entity.AnimalDto;
-import me.tmukhortov.zimad.domain.CatListUseCase;
-import me.tmukhortov.zimad.domain.DogListUseCase;
+import me.tmukhortov.zimad.data.entity.animal.base.Animal;
+import me.tmukhortov.zimad.domain.interactor.CatListUseCase;
+import me.tmukhortov.zimad.domain.interactor.DogListUseCase;
 
 public class AnimalViewModel extends ViewModel {
 
     private final CatListUseCase catUseCase;
     private final DogListUseCase dogUseCase;
-    private MutableLiveData<List<AnimalDto>> catList;
-    private MutableLiveData<List<AnimalDto>> dogList;
+    private MutableLiveData<List<Animal>> catList;
+    private MutableLiveData<List<Animal>> dogList;
     private Disposable disposables;
 
     public AnimalViewModel() {
@@ -25,7 +25,7 @@ public class AnimalViewModel extends ViewModel {
     }
 
     // TODO избавиться от DTO и вернуть уже Animal, либо его реализацию в данном случае Cat
-    public LiveData<List<AnimalDto>> getCatList() {
+    public LiveData<List<Animal>> getCatList() {
         if (catList == null) {
             catList = new MutableLiveData<>();
             loadCatList();
@@ -34,7 +34,7 @@ public class AnimalViewModel extends ViewModel {
     }
 
     // TODO избавиться от DTO и вернуть уже Animal, либо его реализацию в данном случае Cat
-    public LiveData<List<AnimalDto>> getDogList() {
+    public LiveData<List<Animal>> getDogList() {
         if (dogList == null) {
             dogList = new MutableLiveData<>();
             loadDogList();

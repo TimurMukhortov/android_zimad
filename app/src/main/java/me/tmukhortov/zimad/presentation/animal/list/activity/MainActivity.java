@@ -84,7 +84,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void highlightBottomBarMenu(int position) {
         bottomBar.removeOnTabSelectedListener(bottomBarTabSelectedListener);
-        bottomBar.getTabAt(position).select();
+        TabLayout.Tab tab = bottomBar.getTabAt(position);
+        if (tab != null) {
+            tab.select();
+        }
         bottomBar.addOnTabSelectedListener(bottomBarTabSelectedListener);
+
+        //                 bottomBar.getTabAt(position).getCustomView().setSelected(true);
     }
 }
