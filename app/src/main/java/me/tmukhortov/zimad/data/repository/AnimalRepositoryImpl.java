@@ -3,8 +3,8 @@ package me.tmukhortov.zimad.data.repository;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import me.tmukhortov.zimad.data.entity.animal.base.Animal;
-import me.tmukhortov.zimad.data.entity.response.Response;
+import me.tmukhortov.zimad.data.dto.animal.base.Animal;
+import me.tmukhortov.zimad.data.dto.response.Response;
 import me.tmukhortov.zimad.domain.repository.AnimalRepository;
 import me.tmukhortov.zimad.utility.network.NetworkService;
 

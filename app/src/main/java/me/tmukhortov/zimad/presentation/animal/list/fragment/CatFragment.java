@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import me.tmukhortov.zimad.R;
-import me.tmukhortov.zimad.data.entity.animal.base.Animal;
+import me.tmukhortov.zimad.data.dto.animal.base.Animal;
 import me.tmukhortov.zimad.presentation.animal.list.adapter.AnimalAdapter;
 import me.tmukhortov.zimad.presentation.animal.list.viewmodel.AnimalViewModel;
 

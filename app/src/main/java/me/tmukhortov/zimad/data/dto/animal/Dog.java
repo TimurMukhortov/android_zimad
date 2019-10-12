@@ -1,6 +1,6 @@
-package me.tmukhortov.zimad.data.entity.animal;
+package me.tmukhortov.zimad.data.dto.animal;
 
-import me.tmukhortov.zimad.data.entity.animal.base.Animal;
+import me.tmukhortov.zimad.data.dto.animal.base.Animal;
 
 public class Dog extends Animal {
 

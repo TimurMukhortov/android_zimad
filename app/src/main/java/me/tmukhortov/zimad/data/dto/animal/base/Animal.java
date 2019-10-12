@@ -1,4 +1,4 @@
-package me.tmukhortov.zimad.data.entity.animal.base;
+package me.tmukhortov.zimad.data.dto.animal.base;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

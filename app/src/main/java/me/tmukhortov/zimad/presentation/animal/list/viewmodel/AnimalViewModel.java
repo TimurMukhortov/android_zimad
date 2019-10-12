@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import io.reactivex.disposables.Disposable;
-import me.tmukhortov.zimad.data.entity.animal.base.Animal;
+import me.tmukhortov.zimad.data.dto.animal.base.Animal;
 import me.tmukhortov.zimad.domain.interactor.CatListUseCase;
 import me.tmukhortov.zimad.domain.interactor.DogListUseCase;
 

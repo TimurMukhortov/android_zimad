@@ -2,7 +2,7 @@ package me.tmukhortov.zimad.domain.entity;
 
 import java.util.List;
 
-import me.tmukhortov.zimad.data.entity.animal.base.Animal;
+import me.tmukhortov.zimad.data.dto.animal.base.Animal;
 
 public class ApiResponse {
     private final List<Animal> animalList;
