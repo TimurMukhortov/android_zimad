@@ -1,7 +1,5 @@
 package me.tmukhortov.zimad.presentation.animal.list.fragment;
 
-import java.util.ArrayList;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,15 +12,11 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import me.tmukhortov.zimad.R;
-import me.tmukhortov.zimad.data.dto.animal.base.Animal;
 import me.tmukhortov.zimad.presentation.animal.list.adapter.AnimalAdapter;
 import me.tmukhortov.zimad.presentation.animal.list.viewmodel.AnimalViewModel;
 
 public class DogFragment extends Fragment {
 
-    public static final String TAG = DogFragment.class.getName();
-
-    private RecyclerView recyclerView;
     private AnimalAdapter adapter;
 
     public static DogFragment newInstance() {
@@ -34,27 +28,18 @@ public class DogFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_dog_list, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_dog_list, container, false);
+
         if (getActivity() != null) {
             AnimalViewModel animalViewModel =
                     ViewModelProviders.of(getActivity()).get(AnimalViewModel.class);
-            animalViewModel.getDogList().observe(this, animalDtoList -> {
-                // TODO переделать по другому
-                ArrayList<me.tmukhortov.zimad.presentation.animal.list.entity.Animal> animalList = new ArrayList<>();
-                for (Animal animalDto : animalDtoList) {
-                    String avatarPath = animalDto.getUrl();
-                    String title = animalDto.getTitle();
-                    animalList.add(new me.tmukhortov.zimad.presentation.animal.list.entity.Animal(avatarPath, title));
-                }
-                adapter.setItems(animalList);
-            });
+            animalViewModel.getDogList().observe(this, animalList -> adapter.setItems(animalList));
         }
 
-        recyclerView = rootView.findViewById(R.id.fragment_dog_list_recycler);
+        final RecyclerView recyclerView = rootView.findViewById(R.id.fragment_dog_list_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new AnimalAdapter();
         recyclerView.setAdapter(adapter);
         return rootView;
     }
 }
-

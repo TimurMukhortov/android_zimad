@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 import me.tmukhortov.zimad.R;
-import me.tmukhortov.zimad.presentation.animal.list.entity.Animal;
+import me.tmukhortov.zimad.presentation.animal.list.entity.base.AnimalView;
 
 public class AnimalViewHolder extends RecyclerView.ViewHolder {
 
@@ -19,17 +19,16 @@ public class AnimalViewHolder extends RecyclerView.ViewHolder {
     public AnimalViewHolder(View itemView) {
         super(itemView);
         avatarView = itemView.findViewById(R.id.fragment_animal_list_avatar);
-        titleView = itemView.findViewById(R.id.fragment_animal_list_title);
+        titleView = itemView.findViewById(R.id.fragment_animal_list_number);
         descriptionView = itemView.findViewById(R.id.fragment_animal_list_description);
     }
 
-    public void bind(Animal animal) {
+    public void bind(AnimalView animal) {
         String avatarPath = animal.getAvatarPath();
         if (avatarPath != null) {
             Picasso.get().load(avatarPath).resize(75, 75).centerCrop().into(avatarView);
         }
-        // TODO вот эту хрень передалать и отображать индекс в адаптере + 1
-        titleView.setText(animal.getTitle());
-        descriptionView.setText(animal.getTitle());
+        titleView.setText(animal.getNumber());
+        descriptionView.setText(animal.getDescription());
     }
 }

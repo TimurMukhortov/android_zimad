@@ -3,7 +3,7 @@ package me.tmukhortov.zimad.data.dto.animal.base;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public abstract class Animal {
+public abstract class AnimalResponse {
 
     @SerializedName("url")
     @Expose
@@ -12,7 +12,7 @@ public abstract class Animal {
     @Expose
     private final String title;
 
-    public Animal(String url, String title) {
+    public AnimalResponse(String url, String title) {
         this.url = url;
         this.title = title;
     }
