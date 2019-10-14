@@ -9,29 +9,41 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import me.tmukhortov.zimad.R;
 
 public abstract class BaseFragment extends Fragment {
 
+    private SwipeRefreshLayout swipeRefreshLayoutView;
     private ProgressBar progressBarView;
+
+    public boolean isRefreshing = false;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_base, container, false);
+        swipeRefreshLayoutView = rootView.findViewById(R.id.fragment_base_swipe_refresh_layout);
         progressBarView = rootView.findViewById(R.id.fragment_base_progress);
+        swipeRefreshLayoutView.setOnRefreshListener(onRefreshListener());
         loadChildView(rootView, container);
         return rootView;
     }
 
     public abstract void loadChildView(View rootView, ViewGroup container);
 
-    public void showProgressView() {
+    protected void showProgressView() {
         progressBarView.setVisibility(View.VISIBLE);
     }
 
-    public void hideProgressView() {
+    protected void hideProgressView() {
         progressBarView.setVisibility(View.GONE);
     }
+
+    protected void hideRefreshView() {
+        swipeRefreshLayoutView.setRefreshing(false);
+    }
+
+    protected abstract SwipeRefreshLayout.OnRefreshListener onRefreshListener();
 }
