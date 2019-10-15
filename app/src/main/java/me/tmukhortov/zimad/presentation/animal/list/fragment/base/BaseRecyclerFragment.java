@@ -9,13 +9,15 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import me.tmukhortov.zimad.R;
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseRecyclerFragment extends Fragment {
 
     private SwipeRefreshLayout swipeRefreshLayoutView;
     private ProgressBar progressBarView;
+    private RecyclerView recyclerView;
 
     @Nullable
     @Override
@@ -23,20 +25,33 @@ public abstract class BaseFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_base, container, false);
         swipeRefreshLayoutView = rootView.findViewById(R.id.fragment_base_swipe_refresh_layout);
-        progressBarView = rootView.findViewById(R.id.fragment_base_progress);
+        progressBarView = rootView.findViewById(R.id.fragment_base_recycler_progress);
+        recyclerView = rootView.findViewById(R.id.fragment_base_recycler_list);
         swipeRefreshLayoutView.setOnRefreshListener(onRefreshListener());
-        loadChildView(rootView, container);
+        setAdapter(rootView, container, recyclerView);
         return rootView;
     }
 
-    public abstract void loadChildView(View rootView, ViewGroup container);
+    public abstract void setAdapter(View rootView, ViewGroup container, RecyclerView recyclerView);
 
     protected void showProgressView() {
-        progressBarView.setVisibility(View.VISIBLE);
+        if (getView() != null) {
+            ProgressBar progressBarView =
+                    getView().findViewById(R.id.fragment_base_recycler_progress);
+            if (progressBarView != null) {
+                progressBarView.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     protected void hideProgressView() {
-        progressBarView.setVisibility(View.GONE);
+        if (getView() != null) {
+            ProgressBar progressBarView =
+                    getView().findViewById(R.id.fragment_base_recycler_progress);
+            if (progressBarView != null) {
+                progressBarView.setVisibility(View.GONE);
+            }
+        }
     }
 
     protected void hideRefreshView() {
