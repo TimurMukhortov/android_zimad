@@ -17,8 +17,6 @@ public abstract class BaseFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayoutView;
     private ProgressBar progressBarView;
 
-    public boolean isRefreshing = false;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

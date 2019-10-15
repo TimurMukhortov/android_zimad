@@ -2,7 +2,6 @@ package me.tmukhortov.zimad.presentation.animal.list.fragment;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,11 +32,8 @@ public class CatFragment extends BaseFragment {
         if (container != null) {
             container.removeAllViews();
         }
-        ViewStub stubView = rootView.findViewById(R.id.fragment_base_child_fragment);
-        stubView.setLayoutResource(R.layout.fragment_cat_list);
-        stubView.inflate();
+        rootView = getLayoutInflater().inflate(R.layout.fragment_cat_list, container);
         loadData();
-        isRefreshing = true;
         final RecyclerView recyclerView = rootView.findViewById(R.id.fragment_cat_list_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new AnimalAdapter();

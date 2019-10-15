@@ -89,7 +89,5 @@ public class MainActivity extends AppCompatActivity {
             tab.select();
         }
         bottomBar.addOnTabSelectedListener(bottomBarTabSelectedListener);
-
-        //                 bottomBar.getTabAt(position).getCustomView().setSelected(true);
     }
 }
