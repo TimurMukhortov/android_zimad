@@ -1,5 +1,6 @@
 package me.tmukhortov.zimad.presentation.animal.list.fragment.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,20 +36,16 @@ public abstract class BaseRecyclerFragment extends Fragment {
     public abstract void setAdapter(View rootView, ViewGroup container, RecyclerView recyclerView);
 
     protected void showProgressView() {
-        if (getView() != null) {
-            ProgressBar progressBarView =
-                    getView().findViewById(R.id.fragment_base_recycler_progress);
-            if (progressBarView != null) {
+        if (progressBarView != null) {
+            if (progressBarView.getVisibility() != View.VISIBLE) {
                 progressBarView.setVisibility(View.VISIBLE);
             }
         }
     }
 
     protected void hideProgressView() {
-        if (getView() != null) {
-            ProgressBar progressBarView =
-                    getView().findViewById(R.id.fragment_base_recycler_progress);
-            if (progressBarView != null) {
+        if (progressBarView != null) {
+            if (progressBarView.getVisibility() != View.GONE) {
                 progressBarView.setVisibility(View.GONE);
             }
         }

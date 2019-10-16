@@ -38,6 +38,7 @@ public class CatFragment extends BaseRecyclerFragment {
 
     @Override
     protected SwipeRefreshLayout.OnRefreshListener onRefreshListener() {
+        showProgressView();
         return this::loadData;
     }
 
