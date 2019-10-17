@@ -4,26 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Single;
-import me.tmukhortov.zimad.data.dto.animal.DogResponse;
 import me.tmukhortov.zimad.domain.entity.animal.Dog;
-import me.tmukhortov.zimad.domain.entity.animal.base.Animal;
-import me.tmukhortov.zimad.domain.interactor.base.AnimalUseCase;
+import me.tmukhortov.zimad.domain.interactor.base.BaseAnimalListUseCase;
 
-public class DogListUseCase extends AnimalUseCase<Animal> {
+public class DogListUseCase extends BaseAnimalListUseCase<Dog> {
 
     @Override
-    public Single<List<Animal>> execute() {
-        return animalRepository.getDogList().map(response -> {
-            final List<Animal> dogList = new ArrayList<>();
-            final List<DogResponse> dogResponseList = response.getData();
-
-            int count = 0;
-            for (DogResponse dogResponse : dogResponseList) {
-                final String number = String.valueOf(++count);
-                final String url = dogResponse.getUrl();
-                final String title = dogResponse.getUrl();
-                dogList.add(new Dog(number, url, title));
-            }
+    public Single<List<Dog>> execute() {
+        return animalRepository.getDogList().map(resultList -> {
+            final List<Dog> dogList = new ArrayList<>(resultList);
+            // TODO make business logic here
             return dogList;
         });
     }

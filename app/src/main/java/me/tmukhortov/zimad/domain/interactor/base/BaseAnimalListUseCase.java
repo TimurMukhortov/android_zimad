@@ -6,11 +6,11 @@ import io.reactivex.Single;
 import me.tmukhortov.zimad.data.repository.AnimalRepositoryImpl;
 import me.tmukhortov.zimad.domain.repository.AnimalRepository;
 
-public abstract class AnimalUseCase<T> {
+public abstract class BaseAnimalListUseCase<T> {
 
     protected AnimalRepository animalRepository;
 
-    public AnimalUseCase() {
+    public BaseAnimalListUseCase() {
         this.animalRepository = new AnimalRepositoryImpl();
     }
 

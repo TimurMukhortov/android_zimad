@@ -1,13 +1,14 @@
 package me.tmukhortov.zimad.domain.repository;
 
+import java.util.List;
+
 import io.reactivex.Single;
-import me.tmukhortov.zimad.data.dto.animal.CatResponse;
-import me.tmukhortov.zimad.data.dto.animal.DogResponse;
-import me.tmukhortov.zimad.data.dto.response.Response;
+import me.tmukhortov.zimad.domain.entity.animal.Cat;
+import me.tmukhortov.zimad.domain.entity.animal.Dog;
 
 public interface AnimalRepository {
 
-    Single<Response<CatResponse>> getCatList();
+    Single<List<Cat>> getCatList();
 
-    Single<Response<DogResponse>> getDogList();
+    Single<List<Dog>> getDogList();
 }
