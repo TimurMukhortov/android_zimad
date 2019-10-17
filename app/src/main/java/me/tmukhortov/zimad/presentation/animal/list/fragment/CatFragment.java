@@ -17,6 +17,7 @@ import me.tmukhortov.zimad.presentation.animal.list.viewmodel.AnimalViewModel;
 public class CatFragment extends BaseRecyclerFragment {
 
     private AnimalAdapter adapter;
+    private AnimalViewModel animalViewModel;
 
     public static CatFragment newInstance() {
         CatFragment catFragment = new CatFragment();
@@ -26,7 +27,15 @@ public class CatFragment extends BaseRecyclerFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        loadData();
+        if (getActivity() != null) {
+            showProgressView();
+            animalViewModel = ViewModelProviders.of(getActivity()).get(AnimalViewModel.class);
+            animalViewModel.getCatList().observe(this, animalList -> {
+                adapter.setItems(animalList);
+                hideProgressView();
+                hideRefreshView();
+            });
+        }
     }
 
     @Override
@@ -38,20 +47,7 @@ public class CatFragment extends BaseRecyclerFragment {
 
     @Override
     protected SwipeRefreshLayout.OnRefreshListener onRefreshListener() {
-        showProgressView();
-        return this::loadData;
-    }
-
-    private void loadData() {
-        if (getActivity() != null) {
-            showProgressView();
-            AnimalViewModel animalViewModel =
-                    ViewModelProviders.of(getActivity()).get(AnimalViewModel.class);
-            animalViewModel.getCatList().observe(this, animalList -> {
-                adapter.setItems(animalList);
-                hideProgressView();
-                hideRefreshView();
-            });
-        }
+        return () -> {
+        };
     }
 }

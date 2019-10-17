@@ -1,6 +1,5 @@
 package me.tmukhortov.zimad.presentation.animal.list.fragment.base;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,6 +1,7 @@
 package me.tmukhortov.zimad.presentation.animal.list.viewmodel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
@@ -54,6 +55,7 @@ public class AnimalViewModel extends ViewModel {
                 final String description = cat.getDescription();
                 catViewList.add(new CatView(avatarPath, number, description));
             }
+//            Collections.shuffle(catViewList);
             catList.setValue(catViewList);
         }, Throwable::printStackTrace);
     }
