@@ -13,11 +13,12 @@ public class CatListUseCase implements BaseUseCase<Single<List<Cat>>> {
     private AnimalRepository animalRepository;
 
     public CatListUseCase() {
-        this.animalRepository = new AnimalRepositoryImpl();
+        animalRepository = new AnimalRepositoryImpl();
     }
 
     @Override
     public Single<List<Cat>> executeWithResult() {
+        // TODO my business logic here
         return animalRepository.getCatList();
     }
 
