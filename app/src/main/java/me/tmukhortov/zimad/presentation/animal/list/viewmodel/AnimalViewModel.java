@@ -11,15 +11,18 @@ import io.reactivex.disposables.Disposable;
 import me.tmukhortov.zimad.domain.entity.animal.base.Animal;
 import me.tmukhortov.zimad.domain.interactor.CatListUseCase;
 import me.tmukhortov.zimad.domain.interactor.DogListUseCase;
+import me.tmukhortov.zimad.domain.interactor.base.BaseAnimalListUseCase;
 import me.tmukhortov.zimad.presentation.animal.list.entity.CatView;
 import me.tmukhortov.zimad.presentation.animal.list.entity.DogView;
 import me.tmukhortov.zimad.presentation.animal.list.entity.base.AnimalView;
+import me.tmukhortov.zimad.presentation.base.viewmodel.BaseViewModel;
 
-public class AnimalViewModel extends ViewModel {
+public class AnimalViewModel<T extends BaseAnimalListUseCase> extends ViewModel
+        implements BaseViewModel<List<AnimalView>> {
 
     private final CatListUseCase catUseCase;
     private final DogListUseCase dogUseCase;
-    private MutableLiveData<List<AnimalView>> catList;
+    private MutableLiveData<List<AnimalView>> dataList;
     private MutableLiveData<List<AnimalView>> dogList;
     private Disposable disposables;
 
@@ -27,14 +30,6 @@ public class AnimalViewModel extends ViewModel {
         catUseCase = new CatListUseCase();
         // TODO подумать над тем, должен ли этот UseCase жить внутри этой же VM с котятами..
         dogUseCase = new DogListUseCase();
-    }
-
-    public LiveData<List<AnimalView>> getCatList() {
-        if (catList == null) {
-            catList = new MutableLiveData<>();
-            loadCatList();
-        }
-        return catList;
     }
 
     public LiveData<List<AnimalView>> getDogList() {
@@ -46,8 +41,23 @@ public class AnimalViewModel extends ViewModel {
     }
 
     // TODO добавить отображение ошибки в тосте или alert(e)
-    private void loadCatList() {
-        disposables = catUseCase.execute().subscribe(animals -> {
+
+    // TODO добавить обертку над LiveData<List<AnimalView>>, которая также будет содержать Throwable
+
+    // TODO подумать над тем, может ли она содержать состояние загруки, то есть если данные будут
+    //  подгружаться постоянно, то будет какое то состояние, которое будет дожидаться
+
+    // TODO надо подумать о том, что getData должен по умолчанию использоваться load и refresh, а
+    //  их возможно стоит в абстрактный класс вынести и уже наследоваться от него со своей
+    //  реализацей. Пока звучит как хрень. нужно доформулировать мысль.. Либо другой вариант, где
+    //  AnimalViewModel наследуется от абстрактного класса. Зачем? При условии что у нас есть
+    //  базовый ViewModel. А нужен ли он нам? Хороший вопрос. Надо подумать. В теории мы не
+    //  знаем, но если нужна будет другая реализация (хз зачем), то у нас логика на получение
+    //  getData будет присутсвовать и в load() и refresh() и тогда получается getData() является
+    //  единственной вещью, которую пока нужно будет переопределять в зависимости от реализации.
+    //  но пока это только мысль. додумать потом
+    private void getData() {
+        disposables = catUseCase.executeWithResult().subscribe(animals -> {
             final List<AnimalView> catViewList = new ArrayList<>();
             for (Animal cat : animals) {
                 final String number = cat.getNumber();
@@ -55,8 +65,8 @@ public class AnimalViewModel extends ViewModel {
                 final String description = cat.getDescription();
                 catViewList.add(new CatView(avatarPath, number, description));
             }
-//            Collections.shuffle(catViewList);
-            catList.setValue(catViewList);
+            Collections.shuffle(catViewList);
+            dataList.setValue(catViewList);
         }, Throwable::printStackTrace);
     }
 
@@ -83,5 +93,19 @@ public class AnimalViewModel extends ViewModel {
         if (disposables != null && !disposables.isDisposed()) {
             disposables.dispose();
         }
+    }
+
+    @Override
+    public LiveData<List<AnimalView>> load() {
+        if (dataList == null) {
+            dataList = new MutableLiveData<>();
+            getData();
+        }
+        return dataList;
+    }
+
+    @Override
+    public void refresh() {
+        getData();
     }
 }

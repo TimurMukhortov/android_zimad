@@ -1,4 +1,4 @@
-package me.tmukhortov.zimad.presentation.animal.list.activity;
+package me.tmukhortov.zimad.presentation.animal.activity;
 
 import android.os.Bundle;
 

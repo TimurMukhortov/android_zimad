@@ -33,7 +33,7 @@ public class DogFragment extends Fragment {
         if (getActivity() != null) {
             AnimalViewModel animalViewModel =
                     ViewModelProviders.of(getActivity()).get(AnimalViewModel.class);
-            animalViewModel.getDogList().observe(this, animalList -> adapter.setItems(animalList));
+//            animalViewModel.getDogList().observe(this, animalList -> adapter.setItems(animalList));
         }
 
         final RecyclerView recyclerView = rootView.findViewById(R.id.fragment_dog_list_recycler);

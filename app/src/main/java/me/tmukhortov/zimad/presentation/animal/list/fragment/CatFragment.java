@@ -1,5 +1,7 @@
 package me.tmukhortov.zimad.presentation.animal.list.fragment;
 
+import java.util.List;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +13,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import me.tmukhortov.zimad.presentation.animal.list.adapter.AnimalAdapter;
-import me.tmukhortov.zimad.presentation.animal.list.fragment.base.BaseRecyclerFragment;
-import me.tmukhortov.zimad.presentation.animal.list.viewmodel.AnimalViewModel;
+import me.tmukhortov.zimad.presentation.animal.list.entity.base.AnimalView;
+import me.tmukhortov.zimad.presentation.animal.list.viewmodel.CatListViewModel;
+import me.tmukhortov.zimad.presentation.base.fragment.BaseRecyclerFragment;
+import me.tmukhortov.zimad.presentation.base.viewmodel.BaseViewModel;
 
 public class CatFragment extends BaseRecyclerFragment {
 
     private AnimalAdapter adapter;
-    private AnimalViewModel animalViewModel;
+    private BaseViewModel<List<AnimalView>> viewModel;
 
     public static CatFragment newInstance() {
         CatFragment catFragment = new CatFragment();
@@ -29,8 +33,8 @@ public class CatFragment extends BaseRecyclerFragment {
         super.onViewCreated(view, savedInstanceState);
         if (getActivity() != null) {
             showProgressView();
-            animalViewModel = ViewModelProviders.of(getActivity()).get(AnimalViewModel.class);
-            animalViewModel.getCatList().observe(this, animalList -> {
+            viewModel = ViewModelProviders.of(getActivity()).get(CatListViewModel.class);
+            viewModel.load().observe(this, animalList -> {
                 adapter.setItems(animalList);
                 hideProgressView();
                 hideRefreshView();
@@ -47,7 +51,6 @@ public class CatFragment extends BaseRecyclerFragment {
 
     @Override
     protected SwipeRefreshLayout.OnRefreshListener onRefreshListener() {
-        return () -> {
-        };
+        return () -> viewModel.refresh();
     }
 }

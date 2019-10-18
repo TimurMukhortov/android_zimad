@@ -1,4 +1,4 @@
-package me.tmukhortov.zimad.presentation.animal.list.fragment.base;
+package me.tmukhortov.zimad.presentation.base.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

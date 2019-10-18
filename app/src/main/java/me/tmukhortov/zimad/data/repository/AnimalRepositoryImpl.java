@@ -17,8 +17,11 @@ public class AnimalRepositoryImpl implements AnimalRepository {
 
     @Override
     public Single<List<Cat>> getCatList() {
-        return NetworkService.getInstance().getZimadAPI().catList().subscribeOn(Schedulers.single())
-                             .observeOn(AndroidSchedulers.mainThread()).map(response -> {
+        return NetworkService
+                .getInstance()
+                .getZimadAPI()
+                .catList()
+                .map(response -> {
                     final List<Cat> catList = new ArrayList<>();
                     final List<CatResponse> catResponseList = response.getData();
 
@@ -30,14 +33,19 @@ public class AnimalRepositoryImpl implements AnimalRepository {
                         catList.add(new Cat(number, url, title));
                     }
                     return catList;
-                });
+                })
+                .subscribeOn(Schedulers.single())
+                .observeOn(AndroidSchedulers.mainThread());
 
     }
 
     @Override
     public Single<List<Dog>> getDogList() {
-        return NetworkService.getInstance().getZimadAPI().dogList().subscribeOn(Schedulers.single())
-                             .observeOn(AndroidSchedulers.mainThread()).map(response -> {
+        return NetworkService
+                .getInstance()
+                .getZimadAPI()
+                .dogList()
+                .map(response -> {
                     final List<Dog> dogList = new ArrayList<>();
                     final List<DogResponse> dogResponseList = response.getData();
 
@@ -49,6 +57,8 @@ public class AnimalRepositoryImpl implements AnimalRepository {
                         dogList.add(new Dog(number, url, title));
                     }
                     return dogList;
-                });
+                })
+                .subscribeOn(Schedulers.single())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }
