@@ -1,4 +1,4 @@
-package me.tmukhortov.zimad.domain.interactor;
+package me.tmukhortov.zimad.domain.interactor.animal;
 
 import java.util.List;
 

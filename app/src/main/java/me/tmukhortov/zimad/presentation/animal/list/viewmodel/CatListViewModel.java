@@ -6,7 +6,7 @@ import java.util.List;
 
 import io.reactivex.disposables.Disposable;
 import me.tmukhortov.zimad.domain.entity.animal.base.Animal;
-import me.tmukhortov.zimad.domain.interactor.CatListUseCase;
+import me.tmukhortov.zimad.domain.interactor.animal.CatListUseCase;
 import me.tmukhortov.zimad.presentation.animal.list.entity.CatView;
 import me.tmukhortov.zimad.presentation.animal.list.entity.base.AnimalView;
 import me.tmukhortov.zimad.presentation.base.viewmodel.BaseViewModelImpl;

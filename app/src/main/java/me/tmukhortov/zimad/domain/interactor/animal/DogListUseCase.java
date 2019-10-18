@@ -1,11 +1,11 @@
-package me.tmukhortov.zimad.domain.interactor;
+package me.tmukhortov.zimad.domain.interactor.animal;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Single;
 import me.tmukhortov.zimad.domain.entity.animal.Dog;
-import me.tmukhortov.zimad.domain.interactor.base.BaseAnimalListUseCase;
+import me.tmukhortov.zimad.domain.interactor.animal.base.BaseAnimalListUseCase;
 
 public class DogListUseCase extends BaseAnimalListUseCase<Dog> {
 

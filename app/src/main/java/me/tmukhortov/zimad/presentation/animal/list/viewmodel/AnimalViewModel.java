@@ -9,14 +9,18 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import io.reactivex.disposables.Disposable;
 import me.tmukhortov.zimad.domain.entity.animal.base.Animal;
-import me.tmukhortov.zimad.domain.interactor.CatListUseCase;
-import me.tmukhortov.zimad.domain.interactor.DogListUseCase;
-import me.tmukhortov.zimad.domain.interactor.base.BaseAnimalListUseCase;
+import me.tmukhortov.zimad.domain.interactor.animal.CatListUseCase;
+import me.tmukhortov.zimad.domain.interactor.animal.DogListUseCase;
+import me.tmukhortov.zimad.domain.interactor.animal.base.BaseAnimalListUseCase;
 import me.tmukhortov.zimad.presentation.animal.list.entity.CatView;
 import me.tmukhortov.zimad.presentation.animal.list.entity.DogView;
 import me.tmukhortov.zimad.presentation.animal.list.entity.base.AnimalView;
 import me.tmukhortov.zimad.presentation.base.viewmodel.BaseViewModel;
 
+/*
+ * create new class and extend from BaseViewModelImpl
+ */
+@Deprecated
 public class AnimalViewModel<T extends BaseAnimalListUseCase> extends ViewModel
         implements BaseViewModel<List<AnimalView>> {
 
