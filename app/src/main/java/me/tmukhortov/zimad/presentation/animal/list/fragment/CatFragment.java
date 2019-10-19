@@ -34,7 +34,7 @@ public class CatFragment extends BaseRecyclerFragment {
         if (getActivity() != null) {
             showProgressView();
             viewModel = ViewModelProviders.of(getActivity()).get(CatListViewModel.class);
-            viewModel.getData().observe(this, animalList -> {
+            viewModel.getData().observe(getViewLifecycleOwner(), animalList -> {
                 adapter.setItems(animalList);
                 hideProgressView();
                 hideRefreshView();

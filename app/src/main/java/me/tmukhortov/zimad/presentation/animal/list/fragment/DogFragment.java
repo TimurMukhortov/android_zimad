@@ -3,23 +3,22 @@ package me.tmukhortov.zimad.presentation.animal.list.fragment;
 import java.util.List;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import me.tmukhortov.zimad.R;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import me.tmukhortov.zimad.presentation.animal.list.adapter.AnimalAdapter;
 import me.tmukhortov.zimad.presentation.animal.list.entity.base.AnimalView;
 import me.tmukhortov.zimad.presentation.animal.list.viewmodel.DogListViewModel;
+import me.tmukhortov.zimad.presentation.base.fragment.BaseRecyclerFragment;
 import me.tmukhortov.zimad.presentation.base.viewmodel.BaseViewModel;
 
-public class DogFragment extends Fragment {
+public class DogFragment extends BaseRecyclerFragment {
 
     private AnimalAdapter adapter;
     private BaseViewModel<List<AnimalView>> viewModel;
@@ -29,21 +28,29 @@ public class DogFragment extends Fragment {
         return dogFragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_dog_list, container, false);
-
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         if (getActivity() != null) {
+            showProgressView();
             viewModel = ViewModelProviders.of(getActivity()).get(DogListViewModel.class);
-            viewModel.getData().observe(this, animalList -> adapter.setItems(animalList));
+            viewModel.getData().observe(getViewLifecycleOwner(), animalList -> {
+                adapter.setItems(animalList);
+                hideProgressView();
+                hideRefreshView();
+            });
         }
+    }
 
-        final RecyclerView recyclerView = rootView.findViewById(R.id.fragment_dog_list_recycler);
+    @Override
+    public void setAdapter(View rootView, ViewGroup container, RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new AnimalAdapter();
         recyclerView.setAdapter(adapter);
-        return rootView;
+    }
+
+    @Override
+    protected SwipeRefreshLayout.OnRefreshListener onRefreshListener() {
+        return () -> viewModel.refresh();
     }
 }
