@@ -34,7 +34,8 @@ public class NavigationManager implements Navigation {
     }
 
     /**
-     * Initialize the NavigationManager with a FragmentManager, which will be used at the
+     * Initialize the {@link NavigationManager} with a {@link FragmentManager}, which will be used
+     * at the
      * fragment transactions.
      *
      * @param fragmentManager
