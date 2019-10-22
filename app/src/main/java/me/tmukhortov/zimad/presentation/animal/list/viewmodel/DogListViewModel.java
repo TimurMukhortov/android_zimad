@@ -14,12 +14,12 @@ import me.tmukhortov.zimad.presentation.base.viewmodel.BaseViewModelImpl;
 
 public class DogListViewModel extends BaseViewModelImpl<List<AnimalView>> {
 
-    private final DogListUseCase dogUseCase;
+    private final DogListUseCase dogUseCase = new DogListUseCase();
     private Disposable disposables;
 
     public DogListViewModel() {
         super();
-        dogUseCase = new DogListUseCase();
+        loadData();
     }
 
     @Override
@@ -38,6 +38,11 @@ public class DogListViewModel extends BaseViewModelImpl<List<AnimalView>> {
     }
 
     @Override
+    public LiveData<List<AnimalView>> getData() {
+        return getLiveData();
+    }
+
+    @Override
     protected void onCleared() {
         dispose();
         super.onCleared();
@@ -47,10 +52,5 @@ public class DogListViewModel extends BaseViewModelImpl<List<AnimalView>> {
         if (disposables != null && !disposables.isDisposed()) {
             disposables.dispose();
         }
-    }
-
-    @Override
-    public LiveData<List<AnimalView>> getData() {
-        return getLiveData();
     }
 }

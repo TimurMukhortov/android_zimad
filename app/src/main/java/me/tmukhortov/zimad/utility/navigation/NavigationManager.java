@@ -40,6 +40,7 @@ public class NavigationManager implements Navigation {
      *
      * @param fragmentManager
      */
+    @Override
     public void init(FragmentManager fragmentManager) {
         this.fragmentManager = fragmentManager;
         fragmentManager.addOnBackStackChangedListener(() -> {

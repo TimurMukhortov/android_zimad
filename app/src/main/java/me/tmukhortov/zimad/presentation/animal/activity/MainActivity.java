@@ -3,15 +3,15 @@ package me.tmukhortov.zimad.presentation.animal.activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.tabs.TabLayout;
 import me.tmukhortov.zimad.R;
 import me.tmukhortov.zimad.presentation.animal.list.fragment.CatFragment;
 import me.tmukhortov.zimad.presentation.animal.list.fragment.DogFragment;
+import me.tmukhortov.zimad.presentation.base.activity.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private static final String TAB_STATE = "tab_state";
 
@@ -30,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
                 switch (tab.getPosition()) {
                     case 0: {
                         selectedTab = 0;
-                        openCatFragment();
+                        //                        openCatFragment();
+                        navigationManager.navigateTo(CatFragment.newInstance());
                         break;
                     }
                     case 1: {
                         selectedTab = 1;
-                        openDogFragment();
+                        //                                                openDogFragment();
+                        navigationManager.navigateTo(DogFragment.newInstance());
                     }
                 }
             }
