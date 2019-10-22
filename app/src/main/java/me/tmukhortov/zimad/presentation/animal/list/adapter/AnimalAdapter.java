@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import me.tmukhortov.zimad.R;
 import me.tmukhortov.zimad.presentation.animal.list.entity.base.AnimalView;
 import me.tmukhortov.zimad.presentation.animal.list.viewholder.AnimalViewHolder;
+import me.tmukhortov.zimad.presentation.base.activity.BaseActivity;
 
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalViewHolder> {
 

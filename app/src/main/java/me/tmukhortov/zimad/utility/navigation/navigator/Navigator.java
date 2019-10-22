@@ -1,11 +1,11 @@
-package me.tmukhortov.zimad.utility.navigation;
+package me.tmukhortov.zimad.utility.navigation.navigator;
 
 import android.app.Activity;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-public interface Navigation {
+public interface Navigator {
 
     void init(FragmentManager fragmentManager);
 

@@ -7,6 +7,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 import me.tmukhortov.zimad.R;
+import me.tmukhortov.zimad.ZimadApplication;
+import me.tmukhortov.zimad.presentation.animal.item.fragment.AnimalDescriptionFragment;
 import me.tmukhortov.zimad.presentation.animal.list.entity.base.AnimalView;
 
 public class AnimalViewHolder extends RecyclerView.ViewHolder {
@@ -21,6 +23,9 @@ public class AnimalViewHolder extends RecyclerView.ViewHolder {
         avatarView = itemView.findViewById(R.id.fragment_animal_list_avatar);
         titleView = itemView.findViewById(R.id.fragment_animal_list_number);
         descriptionView = itemView.findViewById(R.id.fragment_animal_list_description);
+        itemView.setOnClickListener(
+                view -> ZimadApplication.INSTANCE.getNavigationHolder().getNavigator().navigateTo(
+                        AnimalDescriptionFragment.newInstance()));
     }
 
     public void bind(AnimalView animal) {

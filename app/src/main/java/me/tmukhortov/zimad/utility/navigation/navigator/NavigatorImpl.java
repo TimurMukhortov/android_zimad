@@ -1,4 +1,4 @@
-package me.tmukhortov.zimad.utility.navigation;
+package me.tmukhortov.zimad.utility.navigation.navigator;
 
 import android.app.Activity;
 
@@ -9,7 +9,7 @@ import me.tmukhortov.zimad.R;
 /**
  * Helper class to ease the navigation between screens.
  */
-public class NavigationManager implements Navigation {
+public class NavigatorImpl implements Navigator {
 
     private FragmentManager fragmentManager;
     private NavigationListener navigationListener;
@@ -34,7 +34,7 @@ public class NavigationManager implements Navigation {
     }
 
     /**
-     * Initialize the {@link NavigationManager} with a {@link FragmentManager}, which will be used
+     * Initialize the {@link NavigatorImpl} with a {@link FragmentManager}, which will be used
      * at the
      * fragment transactions.
      *

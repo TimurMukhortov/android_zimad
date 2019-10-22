@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.tabs.TabLayout;
 import me.tmukhortov.zimad.R;
+import me.tmukhortov.zimad.ZimadApplication;
 import me.tmukhortov.zimad.presentation.animal.list.fragment.CatFragment;
 import me.tmukhortov.zimad.presentation.animal.list.fragment.DogFragment;
 import me.tmukhortov.zimad.presentation.base.activity.BaseActivity;
@@ -31,13 +32,15 @@ public class MainActivity extends BaseActivity {
                     case 0: {
                         selectedTab = 0;
                         //                        openCatFragment();
-                        navigationManager.navigateTo(CatFragment.newInstance());
+                        ZimadApplication.INSTANCE.getNavigationHolder().getNavigator()
+                                                 .navigateTo(CatFragment.newInstance());
                         break;
                     }
                     case 1: {
                         selectedTab = 1;
                         //                                                openDogFragment();
-                        navigationManager.navigateTo(DogFragment.newInstance());
+                        ZimadApplication.INSTANCE.getNavigationHolder().getNavigator()
+                                                 .navigateTo(DogFragment.newInstance());
                     }
                 }
             }

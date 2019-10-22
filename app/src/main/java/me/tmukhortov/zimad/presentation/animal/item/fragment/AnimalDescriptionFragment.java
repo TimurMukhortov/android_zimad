@@ -12,6 +12,11 @@ import me.tmukhortov.zimad.R;
 
 public class AnimalDescriptionFragment extends Fragment {
 
+    public static AnimalDescriptionFragment newInstance() {
+        AnimalDescriptionFragment animalDescriptionFragment = new AnimalDescriptionFragment();
+        return animalDescriptionFragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

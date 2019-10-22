@@ -4,26 +4,37 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import me.tmukhortov.zimad.utility.navigation.Navigation;
-import me.tmukhortov.zimad.utility.navigation.NavigationManager;
+import me.tmukhortov.zimad.ZimadApplication;
+import me.tmukhortov.zimad.utility.navigation.navigator.Navigator;
+import me.tmukhortov.zimad.utility.navigation.navigator.NavigatorImpl;
 
 /**
  * Base activity for all the Activities, it provides some common operation for all of the sub-activities.
  */
 public class BaseActivity extends AppCompatActivity {
 
-    protected Navigation navigationManager;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        navigationManager = new NavigationManager();
-        navigationManager.init(getSupportFragmentManager());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Navigator navigator = new NavigatorImpl();
+        navigator.init(getSupportFragmentManager());
+        ZimadApplication.INSTANCE.getNavigationHolder().setNavigator(navigator);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ZimadApplication.INSTANCE.getNavigationHolder().removeNavigator();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        navigationManager.back(this);
+        ZimadApplication.INSTANCE.getNavigationHolder().getNavigator().back(this);
     }
 }
