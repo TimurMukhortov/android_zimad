@@ -9,7 +9,7 @@ public class NavigatorHolderImpl implements NavigatorHolder {
     private Navigator navigation;
 
     @Override
-    public void setNavigator(Navigator navigation) {
+    public void bind(Navigator navigation) {
         this.navigation = navigation;
     }
 
@@ -19,7 +19,7 @@ public class NavigatorHolderImpl implements NavigatorHolder {
     }
 
     @Override
-    public void removeNavigator() {
+    public void unbind() {
         this.navigation = null;
     }
 }

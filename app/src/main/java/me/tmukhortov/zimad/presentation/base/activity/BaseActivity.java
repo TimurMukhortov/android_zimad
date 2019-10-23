@@ -23,13 +23,13 @@ public class BaseActivity extends AppCompatActivity {
         super.onResume();
         Navigator navigator = new NavigatorImpl();
         navigator.init(getSupportFragmentManager());
-        ZimadApplication.INSTANCE.getNavigationHolder().setNavigator(navigator);
+        ZimadApplication.INSTANCE.getNavigationHolder().bind(navigator);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        ZimadApplication.INSTANCE.getNavigationHolder().removeNavigator();
+        ZimadApplication.INSTANCE.getNavigationHolder().unbind();
     }
 
     @Override
