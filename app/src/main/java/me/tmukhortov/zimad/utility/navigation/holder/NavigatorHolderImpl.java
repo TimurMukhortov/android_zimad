@@ -9,13 +9,13 @@ public class NavigatorHolderImpl implements NavigatorHolder {
     private Navigator navigation;
 
     @Override
-    public void bind(Navigator navigation) {
-        this.navigation = navigation;
+    public Navigator getNavigator() {
+        return navigation;
     }
 
     @Override
-    public Navigator getNavigator() {
-        return navigation;
+    public void bind(Navigator navigation) {
+        this.navigation = navigation;
     }
 
     @Override
