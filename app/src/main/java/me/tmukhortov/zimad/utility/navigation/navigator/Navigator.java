@@ -10,7 +10,7 @@ public interface Navigator {
     void init(FragmentManager fragmentManager);
 
     /**
-     * Open specific fragment
+     * Open specific {@link Fragment}
      *
      * @param fragment
      */
@@ -22,7 +22,7 @@ public interface Navigator {
     void back(Activity baseActivity);
 
     /**
-     * Back to specific fragment
+     * Back to specific {@link Fragment}
      */
-    void backTo();
+    void backTo(Fragment fragment);
 }
