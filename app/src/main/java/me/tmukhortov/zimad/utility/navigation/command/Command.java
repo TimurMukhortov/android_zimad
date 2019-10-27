@@ -1,4 +1,4 @@
 package me.tmukhortov.zimad.utility.navigation.command;
 
-interface Command {
+public interface Command {
 }

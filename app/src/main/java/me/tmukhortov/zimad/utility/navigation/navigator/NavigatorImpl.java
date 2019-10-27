@@ -1,10 +1,16 @@
 package me.tmukhortov.zimad.utility.navigation.navigator;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import android.app.Activity;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import me.tmukhortov.zimad.R;
+import me.tmukhortov.zimad.utility.navigation.Screen.Screen;
+import me.tmukhortov.zimad.utility.navigation.command.Command;
+import me.tmukhortov.zimad.utility.navigation.command.Forward;
 
 /**
  * Helper class to ease the navigation between screens.
@@ -13,6 +19,7 @@ public class NavigatorImpl implements Navigator {
 
     private FragmentManager fragmentManager;
     private NavigationListener navigationListener;
+    private Queue<Command[]> commandQueue = new LinkedList<>();
 
     /**
      * Listener interface for navigation events.
@@ -58,6 +65,9 @@ public class NavigatorImpl implements Navigator {
     @Override
     public void navigateTo(Fragment fragment) {
         if (fragmentManager != null) {
+            Screen screen = new Screen();
+            screen.
+            commandQueue.add(new Forward(new Screen()))
             fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
                            .addToBackStack(fragment.toString()).commit();
         }
@@ -80,7 +90,7 @@ public class NavigatorImpl implements Navigator {
     }
 
     @Override
-    public void backTo() {
+    public void backTo(Fragment fragment) {
         //TODO latter add back to specific screen..
     }
 
