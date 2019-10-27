@@ -19,7 +19,7 @@ public class NavigatorImpl implements Navigator {
 
     private FragmentManager fragmentManager;
     private NavigationListener navigationListener;
-    private Queue<Command[]> commandQueue = new LinkedList<>();
+    private Queue<Command> commandQueue = new LinkedList<>();
 
     /**
      * Listener interface for navigation events.
@@ -66,8 +66,8 @@ public class NavigatorImpl implements Navigator {
     public void navigateTo(Fragment fragment) {
         if (fragmentManager != null) {
             Screen screen = new Screen();
-            screen.
-            commandQueue.add(new Forward(new Screen()))
+            Command command = new Forward(screen);
+            commandQueue.add(command);
             fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
                            .addToBackStack(fragment.toString()).commit();
         }
