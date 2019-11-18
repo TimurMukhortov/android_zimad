@@ -22,7 +22,7 @@ public interface Navigator {
     void back(Activity baseActivity);
 
     /**
-     * Back to specific {@link Fragment}
+     * Replace current {@link Fragment} to specific {@link Fragment}
      */
-    void backTo(Fragment fragment);
+    void replace(Fragment fragment);
 }

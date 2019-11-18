@@ -11,6 +11,7 @@ import me.tmukhortov.zimad.R;
 import me.tmukhortov.zimad.utility.navigation.Screen.Screen;
 import me.tmukhortov.zimad.utility.navigation.command.Command;
 import me.tmukhortov.zimad.utility.navigation.command.Forward;
+import me.tmukhortov.zimad.utility.navigation.command.Replace;
 
 /**
  * Helper class to ease the navigation between screens.
@@ -68,7 +69,7 @@ public class NavigatorImpl implements Navigator {
             Screen screen = new Screen();
             Command command = new Forward(screen);
             commandQueue.add(command);
-            fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
+            fragmentManager.beginTransaction().add(R.id.fragment_container, fragment)
                            .addToBackStack(fragment.toString()).commit();
         }
     }
@@ -89,21 +90,19 @@ public class NavigatorImpl implements Navigator {
         }
     }
 
-    @Override
-    public void backTo(Fragment fragment) {
-        //TODO latter add back to specific screen..
-    }
-
     /**
-     * Pops all the queued fragments
+     * Popping in back stack current display {@link Fragment} and replace to specific.
+     *
+     * @param fragment
      */
-    private void popEveryFragment() {
+    @Override
+    public void replace(Fragment fragment) {
         if (fragmentManager != null) {
-            int backStackCount = fragmentManager.getBackStackEntryCount();
-            for (int position = 0; position < backStackCount; position++) {
-                int backStackId = fragmentManager.getBackStackEntryAt(position).getId();
-                fragmentManager.popBackStack(backStackId, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            }
+            Screen screen = new Screen();
+            Command command = new Replace(screen);
+            commandQueue.add(command);
+            fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
+                           .addToBackStack(fragment.toString()).commit();
         }
     }
 }

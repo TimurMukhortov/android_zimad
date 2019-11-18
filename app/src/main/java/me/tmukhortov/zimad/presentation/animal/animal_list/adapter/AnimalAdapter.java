@@ -1,4 +1,4 @@
-package me.tmukhortov.zimad.presentation.animal.list.adapter;
+package me.tmukhortov.zimad.presentation.animal.animal_list.adapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +10,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import me.tmukhortov.zimad.R;
-import me.tmukhortov.zimad.presentation.animal.list.entity.base.AnimalView;
-import me.tmukhortov.zimad.presentation.animal.list.viewholder.AnimalViewHolder;
-import me.tmukhortov.zimad.presentation.base.activity.BaseActivity;
+import me.tmukhortov.zimad.presentation.animal.animal_list.entity.base.Animal;
+import me.tmukhortov.zimad.presentation.animal.animal_list.viewholder.AnimalViewHolder;
 
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalViewHolder> {
 
-    private List<AnimalView> animalList = new ArrayList<>();
+    private List<Animal> animalList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -36,7 +35,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalViewHolder> {
         return animalList.size();
     }
 
-    public void setItems(List<AnimalView> itemList) {
+    public void setItems(List<Animal> itemList) {
         animalList = itemList;
         notifyDataSetChanged();
     }

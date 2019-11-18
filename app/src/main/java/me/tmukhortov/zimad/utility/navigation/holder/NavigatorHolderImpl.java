@@ -4,8 +4,6 @@ import me.tmukhortov.zimad.utility.navigation.navigator.Navigator;
 
 public class NavigatorHolderImpl implements NavigatorHolder {
 
-    private NavigatorHolder navigatorHolder;
-
     private Navigator navigation;
 
     @Override

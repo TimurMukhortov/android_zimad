@@ -1,5 +1,6 @@
 package me.tmukhortov.zimad.domain.interactor.animal;
 
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Single;

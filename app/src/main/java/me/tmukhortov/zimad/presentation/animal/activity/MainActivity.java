@@ -3,13 +3,11 @@ package me.tmukhortov.zimad.presentation.animal.activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.tabs.TabLayout;
 import me.tmukhortov.zimad.R;
 import me.tmukhortov.zimad.ZimadApplication;
-import me.tmukhortov.zimad.presentation.animal.list.fragment.CatFragment;
-import me.tmukhortov.zimad.presentation.animal.list.fragment.DogFragment;
+import me.tmukhortov.zimad.presentation.animal.animal_list.fragment.CatFragment;
+import me.tmukhortov.zimad.presentation.animal.animal_list.fragment.DogFragment;
 import me.tmukhortov.zimad.presentation.base.activity.BaseActivity;
 
 public class MainActivity extends BaseActivity {
@@ -31,16 +29,14 @@ public class MainActivity extends BaseActivity {
                 switch (tab.getPosition()) {
                     case 0: {
                         selectedTab = 0;
-                        //                        openCatFragment();
                         ZimadApplication.INSTANCE.getNavigationHolder().getNavigator()
-                                                 .navigateTo(CatFragment.newInstance());
+                                                 .replace(CatFragment.newInstance());
                         break;
                     }
                     case 1: {
                         selectedTab = 1;
-                        //                                                openDogFragment();
                         ZimadApplication.INSTANCE.getNavigationHolder().getNavigator()
-                                                 .navigateTo(DogFragment.newInstance());
+                                                 .replace(DogFragment.newInstance());
                     }
                 }
             }
@@ -56,7 +52,8 @@ public class MainActivity extends BaseActivity {
         bottomBar.addOnTabSelectedListener(bottomBarTabSelectedListener);
         if (savedInstanceState == null) {
             selectedTab = 0;
-            openCatFragment();
+            ZimadApplication.INSTANCE.getNavigationHolder().getNavigator()
+                                     .navigateTo(CatFragment.newInstance());
         } else {
             int positionTab = savedInstanceState.getInt(TAB_STATE);
             highlightBottomBarMenu(positionTab);
@@ -67,24 +64,6 @@ public class MainActivity extends BaseActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(TAB_STATE, selectedTab);
-    }
-
-    // TODO убрать это говно. нужна какая-то обертка или NavigationComponent
-    private void openCatFragment() {
-        CatFragment catFragment = CatFragment.newInstance();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, catFragment);
-        fragmentTransaction.commit();
-    }
-
-    // TODO убрать это говно. нужна какая-то обертка или NavigationComponent
-    private void openDogFragment() {
-        DogFragment dogFragment = DogFragment.newInstance();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, dogFragment);
-        fragmentTransaction.commit();
     }
 
     private void highlightBottomBarMenu(int position) {

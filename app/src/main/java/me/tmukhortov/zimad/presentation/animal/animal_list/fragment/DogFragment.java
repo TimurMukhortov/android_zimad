@@ -1,4 +1,4 @@
-package me.tmukhortov.zimad.presentation.animal.list.fragment;
+package me.tmukhortov.zimad.presentation.animal.animal_list.fragment;
 
 import java.util.List;
 
@@ -12,16 +12,16 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import me.tmukhortov.zimad.presentation.animal.list.adapter.AnimalAdapter;
-import me.tmukhortov.zimad.presentation.animal.list.entity.base.AnimalView;
-import me.tmukhortov.zimad.presentation.animal.list.viewmodel.DogListViewModel;
+import me.tmukhortov.zimad.presentation.animal.animal_list.adapter.AnimalAdapter;
+import me.tmukhortov.zimad.presentation.animal.animal_list.entity.base.Animal;
+import me.tmukhortov.zimad.presentation.animal.animal_list.viewmodel.DogListViewModel;
 import me.tmukhortov.zimad.presentation.base.fragment.BaseRecyclerFragment;
 import me.tmukhortov.zimad.presentation.base.viewmodel.BaseViewModel;
 
 public class DogFragment extends BaseRecyclerFragment {
 
     private AnimalAdapter adapter;
-    private BaseViewModel<List<AnimalView>> viewModel;
+    private BaseViewModel<List<Animal>> viewModel;
 
     public static DogFragment newInstance() {
         DogFragment dogFragment = new DogFragment();
