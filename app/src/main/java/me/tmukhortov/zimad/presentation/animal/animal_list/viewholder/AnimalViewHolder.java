@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso;
 import me.tmukhortov.zimad.R;
 import me.tmukhortov.zimad.ZimadApplication;
 import me.tmukhortov.zimad.presentation.animal.animal.entity.AnimalDto;
-import me.tmukhortov.zimad.presentation.animal.animal.fragment.AnimalDescriptionFragment;
+import me.tmukhortov.zimad.presentation.animal.animal.fragment.AnimalFragment;
 import me.tmukhortov.zimad.presentation.animal.animal_list.entity.base.Animal;
 
 public class AnimalViewHolder extends RecyclerView.ViewHolder {
@@ -30,7 +30,7 @@ public class AnimalViewHolder extends RecyclerView.ViewHolder {
             final String number = animal.getNumber();
             final String description = animal.getDescription();
             ZimadApplication.INSTANCE.getNavigationHolder().getNavigator().replace(
-                    AnimalDescriptionFragment
+                    AnimalFragment
                             .newInstance(new AnimalDto(avatarPath, number, description)));
         });
     }

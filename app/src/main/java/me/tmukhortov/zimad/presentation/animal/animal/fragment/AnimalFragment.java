@@ -14,13 +14,13 @@ import com.squareup.picasso.Picasso;
 import me.tmukhortov.zimad.R;
 import me.tmukhortov.zimad.presentation.animal.animal.entity.AnimalDto;
 
-public class AnimalDescriptionFragment extends Fragment {
+public class AnimalFragment extends Fragment {
 
     private ImageView avatarView;
     private TextView descriptionView;
 
-    public static AnimalDescriptionFragment newInstance(AnimalDto animalDto) {
-        AnimalDescriptionFragment animalDescriptionFragment = new AnimalDescriptionFragment();
+    public static AnimalFragment newInstance(AnimalDto animalDto) {
+        AnimalFragment animalDescriptionFragment = new AnimalFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(BUNDLE_KEY_ANIMAL_DESCRIPTION, animalDto);
         animalDescriptionFragment.setArguments(bundle);
@@ -35,7 +35,7 @@ public class AnimalDescriptionFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_animal_description, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_animal, container, false);
         avatarView = rootView.findViewById(R.id.fragment_animal_description_avatar);
         descriptionView = rootView.findViewById(R.id.fragment_animal_description_title);
         if (getArguments() != null) {

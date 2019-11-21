@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import com.google.android.material.tabs.TabLayout;
 import me.tmukhortov.zimad.R;
 import me.tmukhortov.zimad.ZimadApplication;
-import me.tmukhortov.zimad.presentation.animal.animal_list.fragment.CatFragment;
-import me.tmukhortov.zimad.presentation.animal.animal_list.fragment.DogFragment;
+import me.tmukhortov.zimad.presentation.animal.animal_list.fragment.CatListFragment;
+import me.tmukhortov.zimad.presentation.animal.animal_list.fragment.DogListFragment;
 import me.tmukhortov.zimad.presentation.base.activity.BaseActivity;
 
 public class MainActivity extends BaseActivity {
@@ -30,13 +30,13 @@ public class MainActivity extends BaseActivity {
                     case 0: {
                         selectedTab = 0;
                         ZimadApplication.INSTANCE.getNavigationHolder().getNavigator()
-                                                 .replace(CatFragment.newInstance());
+                                                 .replace(CatListFragment.newInstance());
                         break;
                     }
                     case 1: {
                         selectedTab = 1;
                         ZimadApplication.INSTANCE.getNavigationHolder().getNavigator()
-                                                 .replace(DogFragment.newInstance());
+                                                 .replace(DogListFragment.newInstance());
                     }
                 }
             }
@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity {
         if (savedInstanceState == null) {
             selectedTab = 0;
             ZimadApplication.INSTANCE.getNavigationHolder().getNavigator()
-                                     .navigateTo(CatFragment.newInstance());
+                                     .navigateTo(CatListFragment.newInstance());
         } else {
             int positionTab = savedInstanceState.getInt(TAB_STATE);
             highlightBottomBarMenu(positionTab);

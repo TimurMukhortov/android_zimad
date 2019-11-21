@@ -21,7 +21,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalViewHolder> {
     @Override
     public AnimalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                                  .inflate(R.layout.item_fragment_animal_list, parent, false);
+                                  .inflate(R.layout.item_fragment_animals_list, parent, false);
         return new AnimalViewHolder(view);
     }
 

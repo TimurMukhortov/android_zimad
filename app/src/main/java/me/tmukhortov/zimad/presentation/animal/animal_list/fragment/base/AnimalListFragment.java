@@ -1,4 +1,6 @@
-package me.tmukhortov.zimad.presentation.base.fragment;
+package me.tmukhortov.zimad.presentation.animal.animal_list.fragment.base;
+
+import java.util.List;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,8 +14,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import me.tmukhortov.zimad.R;
+import me.tmukhortov.zimad.presentation.animal.animal_list.entity.base.Animal;
+import me.tmukhortov.zimad.presentation.base.viewmodel.BaseViewModel;
 
-public abstract class BaseRecyclerFragment extends Fragment {
+public abstract class AnimalListFragment extends Fragment {
+
+    protected BaseViewModel<List<Animal>> viewModel;
 
     private SwipeRefreshLayout swipeRefreshLayoutView;
     private ProgressBar progressBarView;
@@ -23,14 +29,18 @@ public abstract class BaseRecyclerFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_base, container, false);
-        swipeRefreshLayoutView = rootView.findViewById(R.id.fragment_base_swipe_refresh_layout);
-        progressBarView = rootView.findViewById(R.id.fragment_base_recycler_progress);
-        recyclerView = rootView.findViewById(R.id.fragment_base_recycler_list);
+        View rootView = inflater.inflate(R.layout.fragment_animals_list, container, false);
+        swipeRefreshLayoutView =
+                rootView.findViewById(R.id.fragment_animals_list_swipe_refresh_layout);
+        progressBarView = rootView.findViewById(R.id.fragment_animals_list_progress_bar);
+        recyclerView = rootView.findViewById(R.id.fragment_animals_list_recycler_list);
         swipeRefreshLayoutView.setOnRefreshListener(onRefreshListener());
+        viewModel = initViewModel();
         setAdapter(rootView, container, recyclerView);
         return rootView;
     }
+
+    public abstract BaseViewModel<List<Animal>> initViewModel();
 
     public abstract void setAdapter(View rootView, ViewGroup container, RecyclerView recyclerView);
 

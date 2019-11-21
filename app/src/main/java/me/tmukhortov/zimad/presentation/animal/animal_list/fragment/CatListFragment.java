@@ -14,17 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import me.tmukhortov.zimad.presentation.animal.animal_list.adapter.AnimalAdapter;
 import me.tmukhortov.zimad.presentation.animal.animal_list.entity.base.Animal;
+import me.tmukhortov.zimad.presentation.animal.animal_list.fragment.base.AnimalListFragment;
 import me.tmukhortov.zimad.presentation.animal.animal_list.viewmodel.CatListViewModel;
-import me.tmukhortov.zimad.presentation.base.fragment.BaseRecyclerFragment;
 import me.tmukhortov.zimad.presentation.base.viewmodel.BaseViewModel;
 
-public class CatFragment extends BaseRecyclerFragment {
+public class CatListFragment extends AnimalListFragment {
 
     private AnimalAdapter adapter;
-    private BaseViewModel<List<Animal>> viewModel;
 
-    public static CatFragment newInstance() {
-        CatFragment catFragment = new CatFragment();
+    public static CatListFragment newInstance() {
+        CatListFragment catFragment = new CatListFragment();
         return catFragment;
     }
 
@@ -40,6 +39,11 @@ public class CatFragment extends BaseRecyclerFragment {
                 hideRefreshView();
             });
         }
+    }
+
+    @Override
+    public BaseViewModel<List<Animal>> initViewModel() {
+        return ViewModelProviders.of(requireActivity()).get(CatListViewModel.class);
     }
 
     @Override
