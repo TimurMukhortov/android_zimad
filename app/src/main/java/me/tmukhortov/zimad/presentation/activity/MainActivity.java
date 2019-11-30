@@ -1,13 +1,9 @@
-package me.tmukhortov.zimad.presentation.animal.activity;
+package me.tmukhortov.zimad.presentation.activity;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import com.google.android.material.tabs.TabLayout;
 import me.tmukhortov.zimad.R;
 import me.tmukhortov.zimad.ZimadApplication;
-import me.tmukhortov.zimad.presentation.animal.animal_list.fragment.CatListFragment;
-import me.tmukhortov.zimad.presentation.animal.animal_list.fragment.DogListFragment;
 import me.tmukhortov.zimad.presentation.animal.animal_list.fragment.TabFragment;
 import me.tmukhortov.zimad.presentation.base.activity.BaseActivity;
 
